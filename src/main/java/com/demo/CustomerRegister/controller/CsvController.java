@@ -3,9 +3,14 @@ package com.demo.CustomerRegister.controller;
 import com.demo.CustomerRegister.model.Customer;
 import com.demo.CustomerRegister.repository.CustomerRepository;
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +24,7 @@ public class CsvController {
     @GetMapping("exportcsv")
     @CrossOrigin("http://localhost:4200")
     @ResponseBody
-    public String getCSV() {
+    public ResponseEntity<Resource> getCSV() {
         try {
             final Iterable<Customer> customers = customerRepository.findAll();
             final CsvMapper mapper = new CsvMapper();
@@ -33,10 +38,18 @@ public class CsvController {
                     .build();
             String csv = mapper.writer(schema).writeValueAsString(customers);
             System.out.println("csv: " + csv);
-            return csv;
-        } catch (Exception e){
+            byte[] csvBytes = csv.getBytes();
+            ByteArrayResource resource = new ByteArrayResource(csvBytes);
+
+            return ResponseEntity.ok()
+                    .contentLength(csvBytes.length)
+                    .header("Content-Disposition", "attachment; filename=customers.csv")
+                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                    .body(resource);
+
+        } catch (JsonProcessingException e){
             System.out.println("Exception occurred: " + e);
-            return "";
+            return ResponseEntity.status(500).build();
         }
     }
 }
