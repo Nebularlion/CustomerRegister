@@ -19,8 +19,12 @@ public class DataInsertRunner implements CommandLineRunner {
         Company company = new Company();
         company.setName("Test company");
         company.setPhoneNumber("04412345678");
-
         Company savedCompany = companyRepository.save(company);
+
+        Company company2 = new Company();
+        company2.setName("Another company");
+        company2.setPhoneNumber("044987654321");
+        Company savedCompany2 = companyRepository.save(company2);
 
         Customer customer = new Customer();
         customer.setFirstName("Test");
@@ -32,7 +36,7 @@ public class DataInsertRunner implements CommandLineRunner {
         customer2.setFirstName("Customer");
         customer2.setLastName("Testcustomer");
         customer2.setAddress("Testroad 2");
-        customer2.setCompany(savedCompany);
+        customer2.setCompany(savedCompany2);
 
         customerRepository.save(customer);
         customerRepository.save(customer2);

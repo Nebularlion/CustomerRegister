@@ -30,6 +30,7 @@ public class CsvController {
             final CsvMapper mapper = new CsvMapper();
             mapper.configure(JsonGenerator.Feature.IGNORE_UNKNOWN,true);
             CsvSchema schema = CsvSchema.builder()
+                    .setUseHeader(true)
                     .addColumn("firstName")
                     .addColumn("lastName")
                     .addColumn("address")
@@ -37,7 +38,6 @@ public class CsvController {
                     .addColumn("companyPhoneNumber")
                     .build();
             String csv = mapper.writer(schema).writeValueAsString(customers);
-            System.out.println("csv: " + csv);
             byte[] csvBytes = csv.getBytes();
             ByteArrayResource resource = new ByteArrayResource(csvBytes);
 

@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Add new customer</h1>
+<div mat-dialog-content>
+  <form [formGroup]="customerForm">
+    <mat-form-field floatLabel="always" appearance="fill" class="input">
+      <mat-label>First name</mat-label>
+      <input formControlName="firstName" matInput type="text" />
+    </mat-form-field>
+    <mat-form-field floatLabel="always" appearance="fill" class="input">
+      <mat-label>Last name</mat-label>
+      <input formControlName="lastName" matInput type="text" />
+    </mat-form-field>
+    <mat-form-field floatLabel="always" appearance="fill" class="input">
+      <mat-label>Address</mat-label>
+      <input formControlName="address" matInput type="text" />
+    </mat-form-field>
+    <mat-form-field floatLabel="always" appearance="fill" class="input">
+      <mat-label>Company</mat-label>
+      <mat-select formControlName="companyId">
+        <mat-option *ngFor="let company of companies" [value]="company.id">{{
+          company.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button type="button" class="btn btn-dark" (click)="onSubmit()">Save</button>
+</div>

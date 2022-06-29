@@ -1,3 +1,8 @@
+<div class="float-right add-button">
+  <button type="button" class="btn btn-dark" (click)="openDialog()">
+    Add new customer
+  </button>
+</div>
 <div class="card-body">
   <table class="table table-light table-hover table-bordered">
     <thead class="thead-light">
@@ -17,4 +22,7 @@
       </tr>
     </tbody>
   </table>
+  <button type="button" class="btn btn-dark" (click)="exportCsv()">
+    Export to Csv
+  </button>
 </div>
