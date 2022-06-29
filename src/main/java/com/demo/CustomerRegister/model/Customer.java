@@ -1,5 +1,6 @@
 package com.demo.CustomerRegister.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,14 @@ public class Customer {
     
     @ManyToOne
     @JoinColumn(name="company_id")
-    @JsonProperty("company")
+    @JsonIgnore
     private Company company;
+    @JsonProperty("companyName")
+    public String getCompanyName(){
+        return this.company.getName();
+    }
+    @JsonProperty("companyPhoneNumber")
+    public String getCompanyPhoneNumber(){
+        return this.company.getPhoneNumber();
+    }
 }
