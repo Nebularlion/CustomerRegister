@@ -1,0 +1,5 @@
+firstName,lastName,address,companyName,companyPhoneNumber
+Test,Tester,"Testroad 1","Test company",04412345678
+Customer,Testcustomer,"Testroad 2","Another company",044987654321
+Testing,Testing,"Testingroad 1","Test company",04412345678
+"Test ",Customer,"Testing 1","Another company",044987654321
