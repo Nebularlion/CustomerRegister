@@ -16,6 +16,9 @@ public class DataInsertRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        customerRepository.deleteAll();
+        companyRepository.deleteAll();
+
         Company company = new Company();
         company.setName("Test company");
         company.setPhoneNumber("04412345678");

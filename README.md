@@ -26,11 +26,22 @@ Json:
 
 ## Prerequisities
 
-In order to run this container you'll need docker installed.
+In order to run this container you'll need Docker and Docker compose installed.
 
 ## Usage
 
-From root you can start the backend with Docker command ```docker-compose up``` After running the command navigate to angularclient folder and start the front-edn with command ```ng serve --open```
+From project root first build docker images by running
 
+```./build-docker.sh``` 
+
+(You might need to add execution right to the docker script `chmod +x build-docker.sh`)
+
+You can launch the application by running
+
+```docker-compose up```
+
+This will launch Spring Boot Java application, PostgreSQL database and Angular client application.
+
+Navigate to `localhost:4200` on your browser to see the application running
 
 
