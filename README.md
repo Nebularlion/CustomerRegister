@@ -1,6 +1,6 @@
 # Customer register
 
-Example Spring Boot project with containerised PostgreSQL
+Example Spring Boot + Angular project with PostgreSQL
 
 ## Demo
 
